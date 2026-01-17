@@ -22,10 +22,16 @@ const SafetyCenter: React.FC<SafetyCenterProps> = ({
   const atRiskCount = devices.filter(d => d.anomalyScore > 0.3 || d.status !== SecurityStatus.SECURE).length;
   const overallScore = Math.max(0, 100 - (atRiskCount * 15) - (threats.length * 5));
 
-  const getScoreColor = (score: number) => {
+  const getStatusColor = (score: number) => {
     if (score > 80) return 'text-emerald-500';
     if (score > 50) return 'text-amber-500';
     return 'text-rose-500';
+  };
+
+  const getStatusBg = (score: number) => {
+    if (score > 80) return 'bg-emerald-500/10 border-emerald-500/20';
+    if (score > 50) return 'bg-amber-500/10 border-amber-500/20';
+    return 'bg-rose-500/10 border-rose-500/20';
   };
 
   return (
@@ -71,32 +77,30 @@ const SafetyCenter: React.FC<SafetyCenterProps> = ({
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Overall Status Card */}
-        <div className="glass p-10 rounded-[3rem] border-white/5 flex flex-col items-center justify-center text-center relative overflow-hidden bg-gradient-to-br from-emerald-500/5 to-transparent">
+        {/* Overall Status Card - Diagram removed for a cleaner text-focused layout */}
+        <div className="glass p-10 rounded-[3rem] border-white/5 flex flex-col items-center justify-center text-center relative overflow-hidden bg-gradient-to-br from-emerald-500/5 to-transparent min-h-[300px]">
           <div className="absolute top-0 right-0 p-8 opacity-5">
-            <i className="fas fa-house-shield text-8xl"></i>
+            <i className="fas fa-house-shield text-9xl"></i>
           </div>
           
-          <div className="relative mb-6">
-             <svg className="w-40 h-40 transform -rotate-90">
-                <circle cx="80" cy="80" r="70" stroke="currentColor" strokeWidth="10" fill="transparent" className="text-slate-800" />
-                <circle cx="80" cy="80" r="70" stroke="currentColor" strokeWidth="10" fill="transparent" 
-                  strokeDasharray={440} 
-                  strokeDashoffset={440 - (440 * overallScore) / 100} 
-                  className={`${getScoreColor(overallScore)} transition-all duration-1000 ease-out`} 
-                />
-             </svg>
-             <div className="absolute inset-0 flex flex-col items-center justify-center">
-                <span className={`text-4xl font-black ${getScoreColor(overallScore)}`}>{overallScore}%</span>
-                <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Safe</span>
-             </div>
+          <div className={`w-20 h-20 rounded-3xl flex items-center justify-center text-3xl mb-8 border transition-all duration-700 ${getStatusBg(overallScore)} ${getStatusColor(overallScore)} shadow-xl`}>
+             <i className={`fas ${overallScore > 90 ? 'fa-check-double' : overallScore > 70 ? 'fa-circle-exclamation' : 'fa-triangle-exclamation'}`}></i>
           </div>
 
-          <h3 className="text-2xl font-black dark:text-white text-slate-900 uppercase tracking-tight">
-            {overallScore > 90 ? 'Home is Fully Protected' : overallScore > 70 ? 'Action Recommended' : 'Security Warning'}
+          <h3 className={`text-2xl font-black dark:text-white text-slate-900 uppercase tracking-tight leading-tight ${getStatusColor(overallScore)}`}>
+            {overallScore > 90 ? 'Network Fully Protected' : overallScore > 70 ? 'Action Recommended' : 'Security Warning'}
           </h3>
-          <p className="text-slate-500 text-sm mt-2 max-w-[200px]">
-            {atRiskCount === 0 ? 'All your smart devices are behaving normally.' : `${atRiskCount} devices need your immediate attention.`}
+          
+          <div className="mt-4 px-6 py-1.5 rounded-full bg-slate-900/40 border border-white/5 inline-block">
+             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">
+               Integrity: <span className={getStatusColor(overallScore)}>{overallScore}%</span>
+             </span>
+          </div>
+
+          <p className="text-slate-500 text-sm mt-6 max-w-[280px] font-medium leading-relaxed">
+            {atRiskCount === 0 
+              ? 'All mesh nodes are operating within established behavioral parameters and hardware baselines.' 
+              : `ShastraShield has identified ${atRiskCount} anomalies requiring manual audit and potential node isolation.`}
           </p>
         </div>
 
