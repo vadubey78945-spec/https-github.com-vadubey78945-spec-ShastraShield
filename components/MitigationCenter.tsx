@@ -41,7 +41,7 @@ const MitigationCenter: React.FC<MitigationCenterProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Active Enforcements List */}
         <div className="lg:col-span-2 space-y-6">
-           <div className="glass p-8 rounded-[2.5rem] border-white/5 relative overflow-hidden">
+           <div className="glass p-8 rounded-[2.5rem] border-white/5 relative overflow-hidden hover:border-orange-500/10">
               <h3 className="text-xl font-black dark:text-white text-slate-900 mb-8 uppercase flex items-center gap-3">
                 <i className="fas fa-gavel text-rose-500"></i>
                 Active Enforcements
@@ -55,9 +55,9 @@ const MitigationCenter: React.FC<MitigationCenterProps> = ({
               ) : (
                 <div className="space-y-4">
                    {activeMitigations.map(device => (
-                     <div key={device.id} className="p-5 rounded-3xl bg-slate-900/40 border border-white/5 flex items-center justify-between hover:border-cyan-500/20 transition-all group">
+                     <div key={device.id} className="p-5 rounded-3xl bg-slate-900/40 border border-white/5 flex items-center justify-between hover:border-orange-500/20 transition-all group">
                         <div className="flex items-center gap-5">
-                           <div className="w-12 h-12 rounded-2xl bg-slate-800 flex items-center justify-center text-slate-500">
+                           <div className="w-12 h-12 rounded-2xl bg-slate-800 flex items-center justify-center text-slate-500 group-hover:text-orange-400">
                               {DEVICE_ICONS[device.type]}
                            </div>
                            <div>
@@ -66,7 +66,7 @@ const MitigationCenter: React.FC<MitigationCenterProps> = ({
                                  <span className={`px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-widest ${
                                     device.status === SecurityStatus.ISOLATING ? 'bg-rose-500 text-white' :
                                     device.status === SecurityStatus.QUARANTINED ? 'bg-purple-500 text-white' :
-                                    'bg-amber-500 text-white'
+                                    'bg-orange-500 text-white'
                                  }`}>
                                     {device.status}
                                  </span>
@@ -90,7 +90,7 @@ const MitigationCenter: React.FC<MitigationCenterProps> = ({
            <div className="glass p-8 rounded-[2.5rem] border-white/5">
               <div className="flex items-center justify-between mb-8">
                 <h3 className="text-xl font-black dark:text-white text-slate-900 uppercase flex items-center gap-3">
-                  <i className="fas fa-clock-rotate-left text-cyan-400"></i>
+                  <i className="fas fa-clock-rotate-left text-orange-400"></i>
                   Action History
                 </h3>
                 <span className="text-[10px] font-mono text-slate-500 uppercase">Fail-Safe Log</span>
@@ -101,10 +101,10 @@ const MitigationCenter: React.FC<MitigationCenterProps> = ({
                   <p className="text-center py-10 text-slate-500 text-xs uppercase font-bold tracking-widest opacity-40 italic">No automated actions logged.</p>
                 ) : (
                   mitigationHistory.map(record => (
-                    <div key={record.id} className={`p-4 rounded-2xl border transition-all ${record.wasRolledBack ? 'bg-slate-900/20 border-white/5 opacity-50' : 'bg-slate-900/60 border-white/5 hover:border-cyan-500/20'}`}>
+                    <div key={record.id} className={`p-4 rounded-2xl border transition-all ${record.wasRolledBack ? 'bg-slate-900/20 border-white/5 opacity-50' : 'bg-slate-900/60 border-white/5 hover:border-orange-500/20'}`}>
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-4">
-                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs ${record.wasRolledBack ? 'bg-slate-800 text-slate-600' : 'bg-cyan-500/10 text-cyan-500'}`}>
+                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs ${record.wasRolledBack ? 'bg-slate-800 text-slate-600' : 'bg-orange-500/10 text-orange-500'}`}>
                             <i className={`fas ${record.wasRolledBack ? 'fa-undo' : 'fa-robot'}`}></i>
                           </div>
                           <div>
@@ -117,7 +117,7 @@ const MitigationCenter: React.FC<MitigationCenterProps> = ({
                           {!record.wasRolledBack && (
                             <button 
                               onClick={() => onRollback(record)}
-                              className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[8px] font-black uppercase text-slate-400 hover:text-amber-400 hover:border-amber-500/30 transition-all"
+                              className="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-[8px] font-black uppercase text-slate-400 hover:text-orange-400 hover:border-orange-500/30 transition-all"
                             >
                               Rollback
                             </button>
@@ -136,25 +136,25 @@ const MitigationCenter: React.FC<MitigationCenterProps> = ({
 
         {/* Graduated Model Overview */}
         <div className="space-y-6">
-           <div className="glass p-8 rounded-[2.5rem] border-emerald-500/20 bg-emerald-500/5 h-full">
-              <h3 className="text-xs font-black text-emerald-500 uppercase tracking-[0.2em] mb-8">
+           <div className="glass p-8 rounded-[2.5rem] border-orange-500/20 bg-orange-500/5 h-full relative overflow-hidden">
+              <h3 className="text-xs font-black text-orange-500 uppercase tracking-[0.2em] mb-8">
                  Defense Methodology
               </h3>
               <div className="space-y-12 relative">
-                 <div className="absolute left-4 top-4 bottom-4 w-0.5 bg-gradient-to-b from-cyan-500 via-amber-500 to-rose-500 opacity-20"></div>
+                 <div className="absolute left-4 top-4 bottom-4 w-0.5 bg-gradient-to-b from-orange-500 via-orange-500 to-rose-500 opacity-20"></div>
                  
                  {[
-                   { step: '01', title: 'Observe', desc: 'Agent monitors behavioral drifts against baseline.', color: 'text-cyan-400', icon: 'fa-eye' },
-                   { step: '02', title: 'Deceive', desc: 'Deploy shadow proxies to mislead recon.', color: 'text-indigo-400', icon: 'fa-mask' },
-                   { step: '03', title: 'Contain', desc: 'Rate-limit traffic or segment to VLan-Z.', color: 'text-amber-500', icon: 'fa-box-open' },
+                   { step: '01', title: 'Observe', desc: 'Agent monitors behavioral drifts against baseline.', color: 'text-orange-400', icon: 'fa-eye' },
+                   { step: '02', title: 'Deceive', desc: 'Deploy shadow proxies to mislead recon.', color: 'text-orange-500', icon: 'fa-mask' },
+                   { step: '03', title: 'Contain', desc: 'Rate-limit traffic or segment to VLan-Z.', color: 'text-orange-600', icon: 'fa-box-open' },
                    { step: '04', title: 'Isolate', desc: 'Full node severance for critical threats.', color: 'text-rose-500', icon: 'fa-biohazard' }
                  ].map(phase => (
-                   <div key={phase.step} className="flex gap-6 relative z-10">
-                      <div className={`w-8 h-8 rounded-full bg-slate-900 border border-white/10 flex items-center justify-center text-[10px] font-black ${phase.color}`}>
+                   <div key={phase.step} className="flex gap-6 relative z-10 group cursor-default">
+                      <div className={`w-8 h-8 rounded-full bg-slate-900 border border-white/10 flex items-center justify-center text-[10px] font-black ${phase.color} group-hover:scale-110 transition-transform`}>
                          {phase.step}
                       </div>
                       <div>
-                         <h4 className="font-bold text-white uppercase text-sm flex items-center gap-2">
+                         <h4 className="font-bold text-white uppercase text-sm flex items-center gap-2 group-hover:text-orange-400 transition-colors">
                            <i className={`fas ${phase.icon} ${phase.color}`}></i>
                            {phase.title}
                          </h4>
@@ -164,10 +164,10 @@ const MitigationCenter: React.FC<MitigationCenterProps> = ({
                  ))}
               </div>
 
-              <div className="mt-12 p-6 rounded-3xl bg-slate-900/60 border border-white/5">
+              <div className="mt-12 p-6 rounded-3xl bg-slate-900/60 border border-white/5 group hover:border-orange-500/20 transition-all">
                  <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Mitigation Latency</p>
                  <div className="flex items-end gap-2">
-                    <span className="text-4xl font-black text-white">12.4</span>
+                    <span className="text-4xl font-black text-white group-hover:text-orange-400 transition-colors">12.4</span>
                     <span className="text-xs font-bold text-emerald-500 mb-1">ms avg</span>
                  </div>
               </div>

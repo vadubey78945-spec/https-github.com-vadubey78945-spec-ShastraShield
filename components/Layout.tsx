@@ -49,19 +49,19 @@ const Layout: React.FC<LayoutProps> = ({
       >
         <button 
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="absolute -right-4 top-8 w-8 h-8 bg-slate-800 dark:bg-slate-800 border border-white/10 rounded-full flex items-center justify-center text-slate-400 hover:text-cyan-400 transition-colors z-30 shadow-lg"
+          className="absolute -right-4 top-8 w-8 h-8 bg-slate-800 dark:bg-slate-800 border border-white/10 rounded-full flex items-center justify-center text-slate-400 hover:text-orange-400 transition-colors z-30 shadow-lg"
         >
           <i className={`fas ${isCollapsed ? 'fa-bars' : 'fa-chevron-left'} text-xs`}></i>
         </button>
 
         <div className={`p-6 mb-4 transition-opacity duration-300 ${isCollapsed ? 'px-4' : 'px-6'}`}>
           <div className="flex items-center gap-3">
-            <div className="min-w-[40px] w-10 h-10 bg-cyan-500 rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-transform hover:rotate-6">
+            <div className="min-w-[40px] w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(249,115,22,0.4)] transition-transform hover:rotate-6">
               <i className="fas fa-shield-virus text-white text-xl"></i>
             </div>
             {!isCollapsed && (
               <div className="animate-in fade-in slide-in-from-left-2 duration-300">
-                <h1 className="font-black text-xl tracking-tighter neon-text-cyan dark:text-cyan-400 text-slate-900 leading-none uppercase">Shastra</h1>
+                <h1 className="font-black text-xl tracking-tighter neon-text-orange dark:text-orange-400 text-slate-900 leading-none uppercase">ShastraShield</h1>
               </div>
             )}
           </div>
@@ -74,8 +74,8 @@ const Layout: React.FC<LayoutProps> = ({
               onClick={() => setActiveTab(tab.id)}
               className={`w-full flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-300 ${
                 activeTab === tab.id
-                  ? 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 shadow-sm'
-                  : 'hover:bg-slate-200 dark:hover:bg-white/5 text-slate-500 dark:text-slate-400'
+                  ? 'bg-orange-500/10 text-orange-600 dark:text-orange-400 border border-orange-500/20 shadow-sm'
+                  : 'hover:bg-slate-200 dark:hover:bg-white/5 text-slate-500 dark:text-slate-400 hover:scale-[1.02]'
               } ${isCollapsed ? 'justify-center' : ''}`}
               title={isCollapsed ? tab.label : ''}
             >
@@ -90,13 +90,13 @@ const Layout: React.FC<LayoutProps> = ({
             <div className="mt-8 px-2 space-y-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
               <div 
                 onClick={() => setActiveTab('devices')}
-                className="p-4 rounded-2xl dark:bg-slate-900/60 bg-slate-100 border dark:border-white/5 border-slate-200 cursor-pointer hover:border-cyan-500/30 transition-all group"
+                className="p-4 rounded-2xl dark:bg-slate-900/60 bg-slate-100 border dark:border-white/5 border-slate-200 cursor-pointer hover:border-orange-500/30 transition-all group"
               >
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-[10px] font-black uppercase text-slate-500 tracking-widest">Mesh Health</span>
                   <div className="flex gap-1">
-                    <div className="w-1 h-1 rounded-full bg-cyan-400 animate-ping"></div>
-                    <div className="w-1 h-1 rounded-full bg-cyan-400"></div>
+                    <div className="w-1 h-1 rounded-full bg-orange-400 animate-ping"></div>
+                    <div className="w-1 h-1 rounded-full bg-orange-400"></div>
                   </div>
                 </div>
                 <div className="flex items-end justify-between">
@@ -104,7 +104,7 @@ const Layout: React.FC<LayoutProps> = ({
                     <span className="text-2xl font-black dark:text-white text-slate-900 leading-none">{deviceCount}</span>
                     <span className="text-[9px] font-bold text-slate-500 uppercase mt-1">Nodes</span>
                   </div>
-                  <i className="fas fa-radar text-cyan-500/30 text-2xl group-hover:text-cyan-400/50 transition-colors"></i>
+                  <i className="fas fa-radar text-orange-500/30 text-2xl group-hover:text-orange-400/50 transition-colors"></i>
                 </div>
               </div>
             </div>
@@ -118,7 +118,7 @@ const Layout: React.FC<LayoutProps> = ({
           >
             <div className="relative min-w-[32px]">
               {user?.profileImage ? (
-                <img src={user.profileImage} alt="Profile" className="w-8 h-8 rounded-full object-cover border border-cyan-500/50 grayscale group-hover:grayscale-0 transition-all" />
+                <img src={user.profileImage} alt="Profile" className="w-8 h-8 rounded-full object-cover border border-orange-500/50 grayscale group-hover:grayscale-0 transition-all" />
               ) : (
                 <div className="w-8 h-8 rounded-full bg-slate-300 dark:bg-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-200 group-hover:text-rose-400 transition-colors">
                   <i className="fas fa-power-off text-xs"></i>
@@ -153,9 +153,9 @@ const Layout: React.FC<LayoutProps> = ({
           <div className="flex items-center gap-6">
              <div className="flex flex-col items-end">
                 <span className="text-[10px] text-slate-400 uppercase font-mono font-bold leading-tight">Shield Status</span>
-                <span className="text-xs text-cyan-600 dark:text-cyan-400 font-bold leading-tight uppercase">Armed & Ready</span>
+                <span className="text-xs text-orange-600 dark:text-orange-400 font-bold leading-tight uppercase">Armed & Ready</span>
              </div>
-             <button onClick={onSettingsClick} className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-500 hover:text-cyan-500 hover:border-cyan-500/50 transition-all active:scale-90">
+             <button onClick={onSettingsClick} className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-500 hover:text-orange-500 hover:border-orange-500/50 transition-all active:scale-90">
                <i className="fas fa-cog"></i>
              </button>
           </div>
@@ -163,7 +163,7 @@ const Layout: React.FC<LayoutProps> = ({
 
         <div className="flex-1 overflow-y-auto p-8 relative">
           <div className="max-w-7xl mx-auto">{children}</div>
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[120px] -z-10"></div>
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[120px] -z-10"></div>
         </div>
       </main>
     </div>

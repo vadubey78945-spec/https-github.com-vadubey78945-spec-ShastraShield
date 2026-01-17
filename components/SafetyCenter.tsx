@@ -24,13 +24,13 @@ const SafetyCenter: React.FC<SafetyCenterProps> = ({
 
   const getStatusColor = (score: number) => {
     if (score > 80) return 'text-emerald-500';
-    if (score > 50) return 'text-amber-500';
+    if (score > 50) return 'text-orange-500';
     return 'text-rose-500';
   };
 
   const getStatusBg = (score: number) => {
     if (score > 80) return 'bg-emerald-500/10 border-emerald-500/20';
-    if (score > 50) return 'bg-amber-500/10 border-amber-500/20';
+    if (score > 50) return 'bg-orange-500/10 border-orange-500/20';
     return 'bg-rose-500/10 border-rose-500/20';
   };
 
@@ -40,7 +40,7 @@ const SafetyCenter: React.FC<SafetyCenterProps> = ({
       <div className="glass p-6 rounded-[2rem] border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-4">
           <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-xl transition-all duration-500 ${
-            protectionMode === ProtectionMode.PROTECTION ? 'bg-emerald-500/10 text-emerald-500' : 'bg-amber-500/10 text-amber-500'
+            protectionMode === ProtectionMode.PROTECTION ? 'bg-emerald-500/10 text-emerald-500' : 'bg-orange-500/10 text-orange-500'
           }`}>
             <i className={`fas ${protectionMode === ProtectionMode.PROTECTION ? 'fa-shield-halved' : 'fa-graduation-cap'}`}></i>
           </div>
@@ -60,7 +60,7 @@ const SafetyCenter: React.FC<SafetyCenterProps> = ({
            <button 
              onClick={() => onToggleProtectionMode(ProtectionMode.LEARNING)}
              className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
-               protectionMode === ProtectionMode.LEARNING ? 'bg-amber-500 text-slate-900 shadow-lg' : 'text-slate-500 hover:text-white'
+               protectionMode === ProtectionMode.LEARNING ? 'bg-orange-500 text-slate-900 shadow-lg' : 'text-slate-500 hover:text-white'
              }`}
            >
              Learning
@@ -77,8 +77,8 @@ const SafetyCenter: React.FC<SafetyCenterProps> = ({
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Overall Status Card - Diagram removed for a cleaner text-focused layout */}
-        <div className="glass p-10 rounded-[3rem] border-white/5 flex flex-col items-center justify-center text-center relative overflow-hidden bg-gradient-to-br from-emerald-500/5 to-transparent min-h-[300px]">
+        {/* Overall Status Card - Diagram removed as per user request */}
+        <div className="glass p-10 rounded-[3rem] border-white/5 flex flex-col items-center justify-center text-center relative overflow-hidden bg-gradient-to-br from-orange-500/5 to-transparent min-h-[300px]">
           <div className="absolute top-0 right-0 p-8 opacity-5">
             <i className="fas fa-house-shield text-9xl"></i>
           </div>
@@ -124,7 +124,7 @@ const SafetyCenter: React.FC<SafetyCenterProps> = ({
                      return (
                        <div key={threat.id} className="p-5 rounded-3xl bg-slate-900/40 border border-white/5 flex items-start gap-5 hover:border-rose-500/20 transition-all group">
                           <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-xl shrink-0 ${
-                            threat.severity === 'Critical' ? 'bg-rose-500/10 text-rose-500' : 'bg-amber-500/10 text-amber-500'
+                            threat.severity === 'Critical' ? 'bg-rose-500/10 text-rose-500' : 'bg-orange-500/10 text-orange-500'
                           }`}>
                             <i className="fas fa-circle-exclamation"></i>
                           </div>
@@ -156,7 +156,7 @@ const SafetyCenter: React.FC<SafetyCenterProps> = ({
          <div className="flex items-center justify-between mb-10">
             <div>
               <h3 className="text-2xl font-black uppercase dark:text-white text-slate-900 flex items-center gap-3">
-                <i className="fas fa-clipboard-list text-cyan-400"></i>
+                <i className="fas fa-clipboard-list text-orange-400"></i>
                 Security To-Do List
               </h3>
               <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest mt-1">Recommended actions to harden your home</p>
@@ -168,15 +168,15 @@ const SafetyCenter: React.FC<SafetyCenterProps> = ({
 
          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             {recommendations.map(rec => (
-              <div key={rec.id} className="p-8 rounded-[2rem] dark:bg-slate-950/50 bg-slate-50 border dark:border-white/5 border-slate-200 flex flex-col h-full hover:border-cyan-500/30 transition-all relative group">
+              <div key={rec.id} className="p-8 rounded-[2rem] dark:bg-slate-950/50 bg-slate-50 border dark:border-white/5 border-slate-200 flex flex-col h-full hover:border-orange-500/30 transition-all relative group">
                 {rec.severity === 'High' && (
                   <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-rose-500 animate-pulse"></div>
                 )}
                 
                 <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-xl mb-6 ${
-                  rec.type === 'UPDATE' ? 'bg-cyan-500/10 text-cyan-400' :
+                  rec.type === 'UPDATE' ? 'bg-orange-500/10 text-orange-400' :
                   rec.type === 'ISOLATE' ? 'bg-rose-500/10 text-rose-500' :
-                  'bg-amber-500/10 text-amber-500'
+                  'bg-orange-500/10 text-orange-500'
                 }`}>
                   <i className={`fas ${
                     rec.type === 'UPDATE' ? 'fa-arrow-up-from-bracket' :
@@ -194,7 +194,7 @@ const SafetyCenter: React.FC<SafetyCenterProps> = ({
 
                 <button 
                   onClick={() => onAction(rec)}
-                  className="w-full py-4 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-black text-[10px] uppercase tracking-widest transition-all hover:bg-cyan-500 hover:text-slate-950 group-hover:scale-[1.02] active:scale-95 shadow-xl"
+                  className="w-full py-4 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-black text-[10px] uppercase tracking-widest transition-all hover:bg-orange-500 hover:text-slate-950 group-hover:scale-[1.02] active:scale-95 shadow-xl"
                 >
                   {rec.actionLabel}
                 </button>

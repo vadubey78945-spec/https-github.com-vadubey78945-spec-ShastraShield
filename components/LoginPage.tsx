@@ -165,22 +165,22 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-[#020617] relative overflow-hidden font-sans text-slate-200">
-      <div className="absolute top-[-15%] left-[-5%] w-[50%] h-[50%] bg-cyan-600/10 rounded-full blur-[140px] animate-pulse"></div>
-      <div className="absolute bottom-[-15%] right-[-5%] w-[50%] h-[50%] bg-blue-600/10 rounded-full blur-[140px] animate-pulse" style={{ animationDelay: '2s' }}></div>
+      <div className="absolute top-[-15%] left-[-5%] w-[50%] h-[50%] bg-orange-600/10 rounded-full blur-[140px] animate-pulse"></div>
+      <div className="absolute bottom-[-15%] right-[-5%] w-[50%] h-[50%] bg-orange-600/10 rounded-full blur-[140px] animate-pulse" style={{ animationDelay: '2s' }}></div>
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-[0.05]"></div>
 
       <div className="relative w-full max-w-md px-6 z-10">
         <div className="glass p-10 rounded-[2.5rem] border-white/5 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] animate-in fade-in zoom-in duration-1000">
           <div className="flex flex-col items-center mb-10">
             <div className="relative mb-6">
-              <div className="absolute -inset-4 bg-cyan-500/20 rounded-full blur-2xl animate-pulse"></div>
+              <div className="absolute -inset-4 bg-orange-500/20 rounded-full blur-2xl animate-pulse"></div>
               <div className="relative w-20 h-20 bg-slate-900 border border-white/10 rounded-3xl flex items-center justify-center shadow-[inset_0_2px_10px_rgba(255,255,255,0.05)] overflow-hidden group">
-                <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 to-transparent"></div>
-                <i className="fas fa-shield-halved text-cyan-400 text-4xl group-hover:scale-110 transition-transform duration-500"></i>
+                <div className="absolute inset-0 bg-gradient-to-tr from-orange-500/10 to-transparent"></div>
+                <i className="fas fa-shield-halved text-orange-400 text-4xl group-hover:scale-110 transition-transform duration-500"></i>
               </div>
             </div>
             <h1 className="text-3xl font-black tracking-tight text-white mb-1 uppercase text-center">
-              {mode === 'login' ? 'Shastra Shield' : mode === 'register' ? 'Register Agent' : 'Reset Secret'}
+              {mode === 'login' ? 'ShastraShield' : mode === 'register' ? 'Register Agent' : 'Reset Secret'}
             </h1>
             <p className="text-slate-500 text-[10px] font-mono tracking-[0.4em] uppercase text-center">
               {mode === 'reset' ? 'SMTP Verification Required' : 'Autonomous Intelligence'}
@@ -195,7 +195,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
                   <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5">
                     <i className="fas fa-user-shield text-slate-600 text-sm"></i>
                   </div>
-                  <input type="text" placeholder="Enter your name" value={fullName} onChange={(e) => setFullName(e.target.value)} className="w-full bg-slate-950/50 border border-white/5 rounded-2xl py-4 pl-12 pr-4 outline-none focus:border-cyan-500/40 focus:bg-slate-950/80 transition-all text-sm text-slate-200 placeholder:text-slate-700" />
+                  <input type="text" placeholder="Enter your name" value={fullName} onChange={(e) => setFullName(e.target.value)} className="w-full bg-slate-950/50 border border-white/5 rounded-2xl py-4 pl-12 pr-4 outline-none focus:border-orange-500/40 focus:bg-slate-950/80 transition-all text-sm text-slate-200 placeholder:text-slate-700" />
                 </div>
               </div>
             )}
@@ -204,13 +204,13 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
               <div className="space-y-1.5">
                 <label className="text-[10px] font-bold uppercase text-slate-500 ml-1 tracking-widest flex justify-between">
                   User Identity
-                  {password && mode === 'login' && <span className="text-cyan-500 text-[8px] animate-pulse uppercase tracking-widest">Vault Sync Active</span>}
+                  {password && mode === 'login' && <span className="text-orange-500 text-[8px] animate-pulse uppercase tracking-widest">Vault Sync Active</span>}
                 </label>
                 <div className="relative">
                   <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5">
                     <i className="fas fa-at text-slate-600 text-sm"></i>
                   </div>
-                  <input type="text" placeholder="Email or Mobile Number" value={identity} onChange={(e) => setIdentity(e.target.value)} className="w-full bg-slate-950/50 border border-white/5 rounded-2xl py-4 pl-12 pr-4 outline-none focus:border-cyan-500/40 focus:bg-slate-950/80 transition-all text-sm text-slate-200 placeholder:text-slate-700" disabled={mode === 'reset' && (resetStep > 1 || isDispatching)} />
+                  <input type="text" placeholder="Email or Mobile Number" value={identity} onChange={(e) => setIdentity(e.target.value)} className="w-full bg-slate-950/50 border border-white/5 rounded-2xl py-4 pl-12 pr-4 outline-none focus:border-orange-500/40 focus:bg-slate-950/80 transition-all text-sm text-slate-200 placeholder:text-slate-700" disabled={mode === 'reset' && (resetStep > 1 || isDispatching)} />
                 </div>
               </div>
             )}
@@ -219,7 +219,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
               <div className="space-y-1.5 animate-in slide-in-from-top-4 duration-300">
                 <div className="flex justify-between items-center ml-1">
                   <label className="text-[10px] font-bold uppercase text-slate-500 tracking-widest">Verification Code</label>
-                  <span className="text-[8px] text-cyan-500 uppercase font-mono tracking-tighter">(Check Browser Console for SMTP Log)</span>
+                  <span className="text-[8px] text-orange-500 uppercase font-mono tracking-tighter">(Check Browser Console for SMTP Log)</span>
                 </div>
                 <div className="relative">
                   <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5">
@@ -230,7 +230,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
                     placeholder="6-Digit Verification Code" 
                     value={inputCode} 
                     onChange={(e) => setInputCode(e.target.value)} 
-                    className="w-full bg-slate-950/50 border border-white/5 rounded-2xl py-4 pl-12 pr-4 outline-none focus:border-cyan-500/40 focus:bg-slate-950/80 transition-all text-sm text-slate-200 placeholder:text-slate-700 font-mono tracking-widest" 
+                    className="w-full bg-slate-950/50 border border-white/5 rounded-2xl py-4 pl-12 pr-4 outline-none focus:border-orange-500/40 focus:bg-slate-950/80 transition-all text-sm text-slate-200 placeholder:text-slate-700 font-mono tracking-widest" 
                     maxLength={6}
                   />
                 </div>
@@ -244,8 +244,8 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
                   <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5">
                     <i className="fas fa-fingerprint text-slate-600 text-sm"></i>
                   </div>
-                  <input type={showPassword ? "text" : "password"} placeholder="Minimum 8 characters" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full bg-slate-950/50 border border-white/5 rounded-2xl py-4 pl-12 pr-12 outline-none focus:border-cyan-500/40 focus:bg-slate-950/80 transition-all text-sm text-slate-200 placeholder:text-slate-700" />
-                  <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-600 hover:text-cyan-400 transition-colors p-1"><i className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'} text-xs`}></i></button>
+                  <input type={showPassword ? "text" : "password"} placeholder="Minimum 8 characters" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full bg-slate-950/50 border border-white/5 rounded-2xl py-4 pl-12 pr-12 outline-none focus:border-orange-500/40 focus:bg-slate-950/80 transition-all text-sm text-slate-200 placeholder:text-slate-700" />
+                  <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-600 hover:text-orange-400 transition-colors p-1"><i className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'} text-xs`}></i></button>
                 </div>
               </div>
             )}
@@ -255,8 +255,8 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
                 <label className="text-[10px] font-bold uppercase text-slate-500 ml-1 tracking-widest">Confirm Password</label>
                 <div className="relative">
                   <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5"><i className="fas fa-check-circle text-slate-600 text-sm"></i></div>
-                  <input type={showConfirmPassword ? "text" : "password"} placeholder="Verify Secret Key" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className="w-full bg-slate-950/50 border border-white/5 rounded-2xl py-4 pl-12 pr-12 outline-none focus:border-cyan-500/40 focus:bg-slate-950/80 transition-all text-sm text-slate-200 placeholder:text-slate-700" />
-                  <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-600 hover:text-cyan-400 transition-colors p-1"><i className={`fas ${showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'} text-xs`}></i></button>
+                  <input type={showConfirmPassword ? "text" : "password"} placeholder="Verify Secret Key" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className="w-full bg-slate-950/50 border border-white/5 rounded-2xl py-4 pl-12 pr-12 outline-none focus:border-orange-500/40 focus:bg-slate-950/80 transition-all text-sm text-slate-200 placeholder:text-slate-700" />
+                  <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-600 hover:text-orange-400 transition-colors p-1"><i className={`fas ${showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'} text-xs`}></i></button>
                 </div>
               </div>
             )}
@@ -265,13 +265,13 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
               <div className="flex items-center justify-between px-1">
                 <label className="flex items-center gap-2 cursor-pointer group">
                   <input type="checkbox" checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)} className="hidden" />
-                  <div className={`w-4 h-4 rounded border flex items-center justify-center transition-all ${rememberMe ? 'bg-cyan-500 border-cyan-500' : 'border-slate-700'}`}>
+                  <div className={`w-4 h-4 rounded border flex items-center justify-center transition-all ${rememberMe ? 'bg-orange-500 border-orange-500' : 'border-slate-700'}`}>
                     {rememberMe && <i className="fas fa-check text-[8px] text-slate-950"></i>}
                   </div>
                   <span className="text-[10px] font-bold text-slate-600 group-hover:text-slate-400 transition-colors uppercase tracking-tighter">Vault Credentials</span>
                 </label>
                 {mode === 'login' && (
-                  <button type="button" onClick={() => toggleMode('reset')} className="text-[10px] font-bold text-slate-600 hover:text-cyan-400 transition-colors tracking-tighter uppercase">Forgot Secret Key?</button>
+                  <button type="button" onClick={() => toggleMode('reset')} className="text-[10px] font-bold text-slate-600 hover:text-orange-400 transition-colors tracking-tighter uppercase">Forgot Secret Key?</button>
                 )}
               </div>
             )}
@@ -293,7 +293,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
             <button 
               disabled={isDispatching}
               type="submit" 
-              className={`group relative w-full h-14 overflow-hidden rounded-2xl bg-white text-slate-950 font-black text-xs uppercase tracking-[0.2em] transition-all hover:bg-cyan-400 hover:shadow-[0_0_30px_rgba(34,211,238,0.3)] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed`}
+              className={`group relative w-full h-14 overflow-hidden rounded-2xl bg-white text-slate-950 font-black text-xs uppercase tracking-[0.2em] transition-all hover:bg-orange-400 hover:shadow-[0_0_30px_rgba(249,115,22,0.3)] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed`}
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
                 {isDispatching ? (
@@ -308,7 +308,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
                   </>
                 )}
               </span>
-              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent transition-transform duration-700 group-hover:translate-x-full"></div>
+              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-orange-500/20 to-transparent transition-transform duration-700 group-hover:translate-x-full"></div>
             </button>
           </form>
 
@@ -324,7 +324,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
                 </span>
               ) : (
                 <span className="">
-                  New to Shield, <span className="text-cyan-400 ml-1 underline underline-offset-4 decoration-cyan-400/30">Register →</span>
+                  New to Shield, <span className="text-orange-400 ml-1 underline underline-offset-4 decoration-orange-400/30">Register →</span>
                 </span>
               )}
             </button>

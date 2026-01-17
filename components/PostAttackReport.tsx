@@ -35,12 +35,10 @@ const PostAttackReport: React.FC<PostAttackReportProps> = ({ threats, devices, s
   return (
     <div className="space-y-6">
       <div className="glass p-8 rounded-3xl relative overflow-hidden">
-        <div className="absolute top-0 right-0 p-8 opacity-10">
-          <i className="fas fa-file-invoice-dollar text-8xl text-cyan-400"></i>
-        </div>
+        {/* Decorative background icons removed per user request */}
         
         <div className="flex items-center gap-4 mb-6">
-          <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 text-2xl">
+          <div className="w-12 h-12 rounded-2xl bg-orange-500/10 flex items-center justify-center text-orange-400 text-2xl">
             <i className="fas fa-robot"></i>
           </div>
           <div>
@@ -56,7 +54,7 @@ const PostAttackReport: React.FC<PostAttackReportProps> = ({ threats, devices, s
         <div className="flex gap-4">
           <button 
             onClick={handleDownload}
-            className="bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold px-6 py-3 rounded-xl transition-all flex items-center gap-2 active:scale-95"
+            className="bg-orange-500 hover:bg-orange-400 text-slate-900 font-bold px-6 py-3 rounded-xl transition-all flex items-center gap-2 active:scale-95"
           >
             <i className="fas fa-download"></i>
             Download Forensic Log
@@ -72,7 +70,7 @@ const PostAttackReport: React.FC<PostAttackReportProps> = ({ threats, devices, s
 
       <div className="space-y-4">
         <h3 className="text-xl font-bold flex items-center gap-2">
-          <i className="fas fa-list-check text-cyan-400"></i>
+          <i className="fas fa-list-check text-orange-400"></i>
           Correlated Event Timeline
         </h3>
         
@@ -86,10 +84,10 @@ const PostAttackReport: React.FC<PostAttackReportProps> = ({ threats, devices, s
             const device = devices.find(d => d.id === threat.targetDeviceId);
             
             return (
-              <div key={threat.id} className="glass p-5 rounded-2xl border-white/10 hover:border-cyan-500/30 transition-all relative overflow-hidden">
+              <div key={threat.id} className="glass p-5 rounded-2xl border-white/10 hover:border-orange-500/30 transition-all relative overflow-hidden">
                 {threat.isCorrelated && (
                   <div className="absolute top-0 right-0 p-2">
-                    <div className="bg-cyan-500/10 border border-cyan-500/20 text-cyan-500 text-[8px] font-black uppercase px-2 py-0.5 rounded-bl-xl tracking-widest animate-pulse">
+                    <div className="bg-orange-500/10 border border-orange-500/20 text-orange-500 text-[8px] font-black uppercase px-2 py-0.5 rounded-bl-xl tracking-widest animate-pulse">
                       Correlated Signal
                     </div>
                   </div>
@@ -98,7 +96,7 @@ const PostAttackReport: React.FC<PostAttackReportProps> = ({ threats, devices, s
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex gap-4">
                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-                      threat.severity === 'Critical' ? 'bg-rose-500/10 text-rose-500' : 'bg-amber-500/10 text-amber-500'
+                      threat.severity === 'Critical' ? 'bg-rose-500/10 text-rose-500' : 'bg-orange-500/10 text-orange-500'
                     }`}>
                       <i className={`fas ${threat.type === 'Botnet C2' ? 'fa-satellite-dish' : 'fa-triangle-exclamation'}`}></i>
                     </div>
@@ -110,7 +108,7 @@ const PostAttackReport: React.FC<PostAttackReportProps> = ({ threats, devices, s
                   <div className="flex flex-col items-end gap-2">
                     <div className="flex items-center gap-2">
                       <span className="text-[10px] font-mono text-slate-500 uppercase">Confidence:</span>
-                      <span className={`text-[10px] font-black font-mono ${threat.confidence > 0.8 ? 'text-cyan-400' : 'text-amber-500'}`}>
+                      <span className={`text-[10px] font-black font-mono ${threat.confidence > 0.8 ? 'text-orange-400' : 'text-orange-500'}`}>
                         {(threat.confidence * 100).toFixed(0)}%
                       </span>
                     </div>
@@ -131,8 +129,8 @@ const PostAttackReport: React.FC<PostAttackReportProps> = ({ threats, devices, s
                   </div>
                 </div>
 
-                <div className={`p-4 rounded-xl border bg-cyan-500/5 border-cyan-500/10`}>
-                  <p className={`text-[10px] font-mono uppercase mb-2 text-cyan-500`}>
+                <div className={`p-4 rounded-xl border bg-orange-500/5 border-orange-500/10`}>
+                  <p className={`text-[10px] font-mono uppercase mb-2 text-orange-500`}>
                     Agent Analysis Report
                   </p>
                   <p className="text-sm text-slate-300 leading-relaxed">
