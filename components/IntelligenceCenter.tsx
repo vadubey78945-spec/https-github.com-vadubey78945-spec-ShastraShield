@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { IntelligenceState } from '../types';
 
 interface IntelligenceCenterProps {
@@ -14,6 +14,22 @@ const IntelligenceCenter: React.FC<IntelligenceCenterProps> = ({ state, onUpdate
   useEffect(() => {
     setEvolutionProgress(Math.min(100, (state.localPatternsLearned / 500) * 100));
   }, [state.localPatternsLearned]);
+
+  const logEntries = useMemo(() => {
+    const now = new Date();
+    
+    const getRelativeTime = (minutesOffset: number) => {
+      const date = new Date(now.getTime() - minutesOffset * 60000);
+      return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+    };
+
+    return [
+      { time: getRelativeTime(15), action: 'Threat Model Update', desc: 'Fetched 12 new IoT-specific Brute Force signatures from global hub.', type: 'SYNC' },
+      { time: getRelativeTime(160), action: 'Neural Reinforcement', desc: 'Core Gateway baseline solidified after 48h of consistent traffic.', type: 'LEARN' },
+      { time: getRelativeTime(312), action: 'Deception Insight', desc: 'Source IP 103.1.2.4 blacklisted across mesh after decoy Telnet probe.', type: 'DECEPTION' },
+      { time: 'Last Night', action: 'Pattern Mutation', desc: 'Identified variant of Mirai botnet C2 heartbeat in encrypted tunnel.', type: 'MUTATE' }
+    ];
+  }, []);
 
   return (
     <div className="space-y-8 animate-in fade-in duration-700">
@@ -78,7 +94,7 @@ const IntelligenceCenter: React.FC<IntelligenceCenterProps> = ({ state, onUpdate
              </div>
              <div className="p-6 rounded-[2rem] bg-white/5 border border-white/5 hover:border-orange-500/20 transition-all group">
                 <p className="text-[9px] font-black text-slate-500 uppercase mb-2 tracking-widest">Last Sync</p>
-                <p className="text-xl font-black text-white font-mono truncate group-hover:text-orange-400 transition-colors">{new Date(state.lastUpdateTimestamp).toLocaleTimeString()}</p>
+                <p className="text-xl font-black text-white font-mono truncate group-hover:text-orange-400 transition-colors">{new Date(state.lastUpdateTimestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</p>
              </div>
              <div className="p-6 rounded-[2rem] bg-emerald-500/5 border border-emerald-500/10 hidden md:block group hover:bg-emerald-500/10 transition-all">
                 <p className="text-[9px] font-black text-emerald-500 uppercase mb-2 tracking-widest">Immunity Delta</p>
@@ -150,12 +166,7 @@ const IntelligenceCenter: React.FC<IntelligenceCenterProps> = ({ state, onUpdate
             {/* Vertical Line */}
             <div className="absolute left-[92px] top-6 bottom-6 w-0.5 bg-slate-800"></div>
 
-            {[
-               { time: '14:45', action: 'Threat Model Update', desc: 'Fetched 12 new IoT-specific Brute Force signatures from global hub.', type: 'SYNC' },
-               { time: '12:10', action: 'Neural Reinforcement', desc: 'Core Gateway baseline solidified after 48h of consistent traffic.', type: 'LEARN' },
-               { time: '09:33', action: 'Deception Insight', desc: 'Source IP 103.1.2.4 blacklisted across mesh after decoy Telnet probe.', type: 'DECEPTION' },
-               { time: 'Yesterday', action: 'Pattern Mutation', desc: 'Identified variant of Mirai botnet C2 heartbeat in encrypted tunnel.', type: 'MUTATE' }
-            ].map((log, i) => (
+            {logEntries.map((log, i) => (
                <div key={i} className="flex items-start gap-12 p-6 rounded-[2rem] hover:bg-white/5 transition-all group cursor-default">
                   <div className="text-[10px] font-mono text-slate-500 font-black uppercase mt-1 w-20 text-right">{log.time}</div>
                   <div className={`w-3 h-3 rounded-full mt-2 z-10 border-4 border-[#020617] ring-2 transition-all group-hover:scale-125 ${

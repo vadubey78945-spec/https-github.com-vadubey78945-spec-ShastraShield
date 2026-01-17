@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -27,6 +27,14 @@ const Layout: React.FC<LayoutProps> = ({
   deviceCount 
 }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   const tabs = [
     { id: 'dashboard', label: 'Safety Hub', icon: 'fa-house-shield' },
@@ -34,7 +42,7 @@ const Layout: React.FC<LayoutProps> = ({
     { id: 'devices', label: 'IoT Inventory', icon: 'fa-microchip' },
     { id: 'firewall', label: 'Adaptive Firewall', icon: 'fa-building-shield' },
     { id: 'deception', label: 'Deception Ops', icon: 'fa-ghost' },
-    { id: 'mitigation', label: 'Mitigation Center', icon: 'fa-shield-check' },
+    { id: 'mitigation', label: 'Mitigation Center', icon: 'fa-hand-holding-shield' },
     { id: 'analytics', label: 'Expert Analytics', icon: 'fa-shield-halved' },
     { id: 'reports', label: 'Security Reports', icon: 'fa-file-shield' },
   ];
@@ -141,12 +149,22 @@ const Layout: React.FC<LayoutProps> = ({
 
       <main className="flex-1 flex flex-col relative overflow-hidden">
         <header className="h-16 flex items-center justify-between px-8 glass dark:bg-slate-950/30 bg-white/80 border-b border-slate-200 dark:border-white/5 z-10">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-8">
             <div className="flex items-center gap-2">
               <div className={`w-2 h-2 rounded-full ${isAttackActive ? 'bg-rose-500 pulse-red' : 'bg-emerald-500'}`}></div>
               <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                 {isAttackActive ? 'Defensive Matrix Active' : 'System Healthy'}
               </span>
+            </div>
+            
+            <div className="hidden sm:flex items-center gap-3 px-4 py-1.5 rounded-xl bg-slate-900/50 border border-white/5">
+               <i className="fas fa-clock text-orange-500 text-[10px]"></i>
+               <span className="text-[11px] font-mono font-bold text-white tracking-widest uppercase">
+                  {currentTime.toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' })}
+               </span>
+               <span className="text-[9px] font-mono text-slate-500 uppercase ml-2 border-l border-white/10 pl-2">
+                  {currentTime.toLocaleDateString([], { day: '2-digit', month: 'short', year: 'numeric' })}
+               </span>
             </div>
           </div>
 
