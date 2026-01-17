@@ -1,0 +1,7 @@
+{
+  "name": "ShastraShield AI",
+  "description": "A production-grade, agentic AI-driven IoT security application for autonomous home network protection, featuring deception-based defense, real-time threat detection, and silent mitigation.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
